@@ -215,14 +215,14 @@
         <div id="ytplayer"></div>
         <div class="header">
             <h1>¡Feliz Cumple Marco! 🎂</h1>
-            <p style="font-size: 1.2em;"> Espero q la hayas pasado chvr 🎉</p>
+            <p style="font-size: 1.2em;">Espero q la hayas pasado chvr 🎉</p>
             <button id="musicBtn" style="margin-top: 20px; padding: 12px 25px; background: linear-gradient(135deg, #FFD700, #FFA500); border: none; border-radius: 25px; font-size: 1em; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4); transition: all 0.3s ease; color: #4A0E0E;">
                 🎵 Click para música 🎵
             </button>
         </div>
         
         <div class="card">
-            <h2>🎉Janmadin mubarak ho!</h2>
+            <h2>🎉 Janmadin mubarak ho!</h2>
             <p>
                 Marco, sos una persona maravillosa en serio. Siempre atento con todas las personas a tu alrededor, bien risueño, aprovecha esa sonrisa q tienes xd, no todos son afortunados. Sos de esas personas que te animan el día sin ni siquiera intentarlo, siempre feliz y con buena onda.
             </p>
@@ -242,32 +242,32 @@
             <h2>🎬 Algunas de las pelis que vimos</h2>
             <p>Cada una me recuerda a vos lit:</p>
             <div class="movies-list">
-                <div class="movie-item">📽️ [kol mil gaya]</div>
-                <div class="movie-item">📽️ [3 idiots | se me pego mas esa]</div>
-                <div class="movie-item">📽️ [Chennai Express | uff mas]</div>
-                <div class="movie-item">📽️ [ Veer Zaara]</div>
+                <div class="movie-item">📽️ Koi Mil Gaya</div>
+                <div class="movie-item">📽️ 3 Idiots | se me pego mas esa</div>
+                <div class="movie-item">📽️ Chennai Express | uff mas</div>
+                <div class="movie-item">📽️ Veer Zaara</div>
             </div>
         </div>
         
         <div class="card">
             <h2>📸 Foticos</h2>
-            <p>Jajaja es que cada que salíamos ni sacábamos fotos xdd. Nos concentrábamos en bailar y tomar 🍺😂. Pero igual encontré x ahi unos recuerditos:</p>
+            <p>Jajaja es que cada que salíamos ni sacábamos fotos xdd. Nos concentrábamos en bailar y tomar 🍺😂. Pero igual encontré algunas:</p>
             <div class="media-grid">
                 <button class="media-button" onclick="openModal('video1')">🎥 Video</button>
-                <button class="media-button" onclick="openModal('foto1')">📷 Foto 1</button>
-                <button class="media-button" onclick="openModal('foto2')">📷 Foto 2</button>
-                <button class="media-button" onclick="openModal('foto3')">📷 Foto 3</button>
+                <button class="media-button" onclick="openModal('photo1')">📷 Foto 1</button>
+                <button class="media-button" onclick="openModal('photo2')">📷 Foto 2</button>
+                <button class="media-button" onclick="openModal('photo3')">📷 Foto 3</button>
             </div>
         </div>
         
         <div class="card" style="text-align: center; background: rgba(255, 215, 0, 0.12); border-color: #FFD700;">
             <h2 style="margin-bottom: 15px;">✨ Gracias por todo bro ✨</h2>
             <p style="font-size: 1.15em;">
-                Que la pases increíble hoy. Sos una persona genial y te deseo lo mejoor siempre 🎉🎂
+                Que la pases increíble hoy. Sos una persona genial y te deseo lo mejor 🎉🎂
             </p>
             <p style="margin-top: 15px; font-size: 1em;">
                 Con buena onda,<br>
-                <strong> Jazz</strong> 😊
+                <strong>Tu amiga</strong> 😊
             </p>
         </div>
     </div>
@@ -278,40 +278,40 @@
             <span class="close" onclick="closeModal('video1')">&times;</span>
             <h2 style="color: #FFD700; margin-bottom: 20px;">Video</h2>
             <video controls style="width: 100%; max-width: 600px; border-radius: 10px;">
-                <source src="URL_DE_TU_VIDEO" type="video/mp4">
+                <source src="video1.mp4" type="video/mp4">
             </video>
         </div>
     </div>
     
-    <div id="foto1" class="modal" onclick="closeModal('foto1')">
+    <div id="photo1" class="modal" onclick="closeModal('photo1')">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close" onclick="closeModal('foto1')">&times;</span>
+            <span class="close" onclick="closeModal('photo1')">&times;</span>
             <h2 style="color: #FFD700; margin-bottom: 20px;">Foto 1</h2>
-            <img src="URL_DE_TU_FOTO_1" alt="Foto 1" style="width: 100%; max-width: 600px; border-radius: 10px;">
+            <img src="foto1.png" alt="Foto 1" style="width: 100%; max-width: 600px; border-radius: 10px;">
         </div>
     </div>
     
-    <div id="foto2" class="modal" onclick="closeModal('foto2')">
+    <div id="photo2" class="modal" onclick="closeModal('photo2')">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close" onclick="closeModal('foto2')">&times;</span>
+            <span class="close" onclick="closeModal('photo2')">&times;</span>
             <h2 style="color: #FFD700; margin-bottom: 20px;">Foto 2</h2>
-            <img src="URL_DE_TU_FOTO_2" alt="Foto 2" style="width: 100%; max-width: 600px; border-radius: 10px;">
+            <img src="foto2.png" alt="Foto 2" style="width: 100%; max-width: 600px; border-radius: 10px;">
         </div>
     </div>
     
-    <div id="foto3" class="modal" onclick="closeModal('foto3')">
+    <div id="photo3" class="modal" onclick="closeModal('photo3')">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close" onclick="closeModal('foto3')">&times;</span>
+            <span class="close" onclick="closeModal('photo3')">&times;</span>
             <h2 style="color: #FFD700; margin-bottom: 20px;">Foto 3</h2>
-            <img src="URL_DE_TU_FOTO_3" alt="Foto 3" style="width: 100%; max-width: 600px; border-radius: 10px;">
+            <img src="foto3.jfif" alt="Foto 3" style="width: 100%; max-width: 600px; border-radius: 10px;">
         </div>
     </div>
     
     <script>
-        // URL de YouTube - Reemplaza VIDEO_ID con el ID del video de YouTube
-        // Por ejemplo: si el link es https://www.youtube.com/watch?v=dQw4w9WgXcQ
-        // Solo pon: dQw4w9WgXcQ
-        const YOUTUBE_VIDEO_ID = 'dQw4w9WgXcQ'; // Reemplaza con tu video ID
+        // MÚSICA DE YOUTUBE - Solo cambia el ID del video aquí 👇
+        // Ejemplo: si tu link es https://www.youtube.com/watch?v=ABC123
+        // Solo pon: 'ABC123'
+        const YOUTUBE_VIDEO_ID = 'dodDteh-m3Q';
         
         let musicPlaying = false;
         let player;
