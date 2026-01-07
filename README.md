@@ -1,1 +1,457 @@
-# md
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¡Feliz Cumple Marco! 🎉</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Permanent+Marker&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #4A0E0E;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+        
+        .glitter {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, #FFD700 0%, #FFA500 100%);
+            border-radius: 50%;
+            pointer-events: none;
+            box-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFA500;
+            animation: twinkle 2s ease-in-out infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+        
+        .sparkle-burst {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            background: #FFD700;
+            border-radius: 50%;
+            pointer-events: none;
+            box-shadow: 0 0 10px #FFD700;
+            z-index: 9999;
+            animation: burstOut 0.8s ease-out forwards;
+        }
+        
+        @keyframes burstOut {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0);
+                opacity: 0;
+            }
+        }
+        
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            font-family: 'Permanent Marker', cursive;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5), 0 0 20px rgba(255, 215, 0, 0.5);
+            margin-bottom: 10px;
+            color: #FFD700;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            animation: slideUp 0.8s ease;
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 215, 0, 0.6);
+            box-shadow: 0 12px 40px rgba(255, 215, 0, 0.2);
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .card h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .card p {
+            line-height: 1.8;
+            font-size: 1.05em;
+        }
+        
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .media-button {
+            background: linear-gradient(135deg, #6B1515 0%, #8B0000 100%);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            border-radius: 12px;
+            padding: 18px;
+            color: white;
+            font-size: 1.05em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+        
+        .media-button:hover {
+            transform: translateY(-3px) scale(1.03);
+            border-color: #FFD700;
+            box-shadow: 0 6px 25px rgba(255, 215, 0, 0.3);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: rgba(74, 14, 14, 0.98);
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 90%;
+            max-height: 90%;
+            overflow: auto;
+            position: relative;
+            border: 2px solid rgba(255, 215, 0, 0.5);
+        }
+        
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            font-size: 2em;
+            font-weight: bold;
+            color: #FFD700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .close:hover {
+            color: #FFF;
+            transform: rotate(90deg);
+        }
+        
+        .movies-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .movie-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 3px solid #FFD700;
+            transition: all 0.3s ease;
+        }
+        
+        .movie-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(8px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="ytplayer"></div>
+        <div class="header">
+            <h1>¡Feliz Cumple Marco! 🎂</h1>
+            <p style="font-size: 1.2em;">Que la pases genial hoy bro 🎉</p>
+            <button id="musicBtn" style="margin-top: 20px; padding: 12px 25px; background: linear-gradient(135deg, #FFD700, #FFA500); border: none; border-radius: 25px; font-size: 1em; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4); transition: all 0.3s ease; color: #4A0E0E;">
+                🎵 Click para música 🎵
+            </button>
+        </div>
+        
+        <div class="card">
+            <h2>🎉 Feliz Cumpleaños bro!</h2>
+            <p>
+                Marco, sos una persona maravillosa en serio. Siempre atento con todas las personas a tu alrededor, bien risueño, con buena vibra. Sos de esas personas que te animan el día sin ni siquiera intentarlo, siempre feliz y con buena onda. Eso se valora un montón, bro.
+            </p>
+        </div>
+        
+        <div class="card">
+            <h2>🎭 Nuestra historia xdd</h2>
+            <p>
+                Desde ese flashmob donde eras el único hombre jajaja, hasta el grupo de baile... Han sido buenos tiempos, bro. Gracias por todo, por los regalos increíbles (ese sari y las pulseras, la joyería hindú), por ser re buena onda siempre.
+            </p>
+            <p style="margin-top: 15px;">
+                Sé que nos distanciamos por mis malas decisiones y me arrepiento. Te extraño un montón wey, extraño todo eso de la música Bollywood, los bailes, las charlas. Sos una gran persona y un gran amigo.
+            </p>
+        </div>
+        
+        <div class="card">
+            <h2>🎬 Pelis que vimos</h2>
+            <p>Cada una me recuerda a vos:</p>
+            <div class="movies-list">
+                <div class="movie-item">📽️ [Nombre de peli 1]</div>
+                <div class="movie-item">📽️ [Nombre de peli 2]</div>
+                <div class="movie-item">📽️ [Nombre de peli 3]</div>
+                <div class="movie-item">📽️ [Nombre de peli 4]</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>📸 Foticos</h2>
+            <p>Jajaja es que cada que salíamos ni sacábamos fotos xdd. Nos concentrábamos en bailar y tomar 🍺😂. Pero igual encontré algunas:</p>
+            <div class="media-grid">
+                <button class="media-button" onclick="openModal('video1')">🎥 Video</button>
+                <button class="media-button" onclick="openModal('photo1')">📷 Foto 1</button>
+                <button class="media-button" onclick="openModal('photo2')">📷 Foto 2</button>
+                <button class="media-button" onclick="openModal('photo3')">📷 Foto 3</button>
+            </div>
+        </div>
+        
+        <div class="card" style="text-align: center; background: rgba(255, 215, 0, 0.12); border-color: #FFD700;">
+            <h2 style="margin-bottom: 15px;">✨ Gracias por todo bro ✨</h2>
+            <p style="font-size: 1.15em;">
+                Que la pases increíble hoy. Sos una persona genial y te deseo lo mejor 🎉🎂
+            </p>
+            <p style="margin-top: 15px; font-size: 1em;">
+                Con buena onda,<br>
+                <strong>Tu amiga</strong> 😊
+            </p>
+        </div>
+    </div>
+    
+    <!-- Modals -->
+    <div id="video1" class="modal" onclick="closeModal('video1')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close" onclick="closeModal('video1')">&times;</span>
+            <h2 style="color: #FFD700; margin-bottom: 20px;">Video</h2>
+            <video controls style="width: 100%; max-width: 600px; border-radius: 10px;">
+                <source src="URL_DE_TU_VIDEO" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    
+    <div id="photo1" class="modal" onclick="closeModal('photo1')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close" onclick="closeModal('photo1')">&times;</span>
+            <h2 style="color: #FFD700; margin-bottom: 20px;">Foto 1</h2>
+            <img src="URL_DE_TU_FOTO_1" alt="Foto 1" style="width: 100%; max-width: 600px; border-radius: 10px;">
+        </div>
+    </div>
+    
+    <div id="photo2" class="modal" onclick="closeModal('photo2')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close" onclick="closeModal('photo2')">&times;</span>
+            <h2 style="color: #FFD700; margin-bottom: 20px;">Foto 2</h2>
+            <img src="URL_DE_TU_FOTO_2" alt="Foto 2" style="width: 100%; max-width: 600px; border-radius: 10px;">
+        </div>
+    </div>
+    
+    <div id="photo3" class="modal" onclick="closeModal('photo3')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close" onclick="closeModal('photo3')">&times;</span>
+            <h2 style="color: #FFD700; margin-bottom: 20px;">Foto 3</h2>
+            <img src="URL_DE_TU_FOTO_3" alt="Foto 3" style="width: 100%; max-width: 600px; border-radius: 10px;">
+        </div>
+    </div>
+    
+    <script>
+        // URL de YouTube - Reemplaza VIDEO_ID con el ID del video de YouTube
+        // Por ejemplo: si el link es https://www.youtube.com/watch?v=dQw4w9WgXcQ
+        // Solo pon: dQw4w9WgXcQ
+        const YOUTUBE_VIDEO_ID = 'dQw4w9WgXcQ'; // Reemplaza con tu video ID
+        
+        let musicPlaying = false;
+        let player;
+        
+        // Cargar API de YouTube
+        const tag = document.createElement('script');
+        tag.src = 'https://www.youtube.com/iframe_api';
+        const firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        
+        // Crear reproductor cuando la API esté lista
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('ytplayer', {
+                height: '0',
+                width: '0',
+                videoId: YOUTUBE_VIDEO_ID,
+                playerVars: {
+                    autoplay: 0,
+                    controls: 0,
+                    loop: 1,
+                    playlist: YOUTUBE_VIDEO_ID
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
+        
+        function onPlayerReady(event) {
+            document.getElementById('musicBtn').addEventListener('click', function() {
+                if (!musicPlaying) {
+                    event.target.playVideo();
+                    this.textContent = '🔊 Pausar música';
+                    this.style.background = 'linear-gradient(135deg, #FF6347, #DC143C)';
+                    musicPlaying = true;
+                } else {
+                    event.target.pauseVideo();
+                    this.textContent = '🎵 Click para música 🎵';
+                    this.style.background = 'linear-gradient(135deg, #FFD700, #FFA500)';
+                    musicPlaying = false;
+                }
+            });
+        }
+        
+        const glitters = [];
+        const glitterCount = 150;
+        
+        // Crear brillitos por toda la página
+        function createGlitter() {
+            for (let i = 0; i < glitterCount; i++) {
+                const glitter = document.createElement('div');
+                glitter.className = 'glitter';
+                glitter.style.left = Math.random() * 100 + '%';
+                glitter.style.top = Math.random() * 100 + '%';
+                glitter.style.animationDelay = Math.random() * 2 + 's';
+                glitter.style.animationDuration = (1.5 + Math.random()) + 's';
+                document.body.appendChild(glitter);
+                glitters.push({
+                    element: glitter,
+                    baseX: parseFloat(glitter.style.left),
+                    baseY: parseFloat(glitter.style.top),
+                    currentX: parseFloat(glitter.style.left),
+                    currentY: parseFloat(glitter.style.top)
+                });
+            }
+        }
+        
+        // Mover brillitos cuando pasa el mouse
+        document.addEventListener('mousemove', function(e) {
+            const mouseX = (e.clientX / window.innerWidth) * 100;
+            const mouseY = (e.clientY / window.innerHeight) * 100;
+            
+            glitters.forEach(g => {
+                const dx = mouseX - g.baseX;
+                const dy = mouseY - g.baseY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 15) {
+                    const force = (15 - distance) / 15;
+                    const moveX = -dx * force * 2;
+                    const moveY = -dy * force * 2;
+                    
+                    g.currentX = g.baseX + moveX;
+                    g.currentY = g.baseY + moveY;
+                    g.element.style.left = g.currentX + '%';
+                    g.element.style.top = g.currentY + '%';
+                    g.element.style.transform = `scale(${1 + force})`;
+                } else {
+                    g.currentX += (g.baseX - g.currentX) * 0.1;
+                    g.currentY += (g.baseY - g.currentY) * 0.1;
+                    g.element.style.left = g.currentX + '%';
+                    g.element.style.top = g.currentY + '%';
+                    g.element.style.transform = 'scale(1)';
+                }
+            });
+        });
+        
+        // Explosión de brillitos al hacer click
+        document.addEventListener('click', function(e) {
+            const colors = ['#FFD700', '#FFA500', '#FFFF00', '#FF6347'];
+            const sparkleCount = 15;
+            
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle-burst';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                sparkle.style.background = colors[Math.floor(Math.random() * colors.length)];
+                
+                const angle = (Math.PI * 2 * i) / sparkleCount;
+                const velocity = 60 + Math.random() * 60;
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity;
+                
+                sparkle.style.setProperty('--tx', tx + 'px');
+                sparkle.style.setProperty('--ty', ty + 'px');
+                
+                document.body.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 800);
+            }
+        });
+        
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+        
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+        
+        window.onload = function() {
+            createGlitter();
+        };
+        
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => modal.style.display = 'none');
+            }
+        });
+    </script>
+</body>
+</html>
